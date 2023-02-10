@@ -10,6 +10,7 @@
     <script>
         THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
     </script>
+
 </head>
 
 
@@ -22,9 +23,22 @@
         gltf-model="{{ url_for('static', filename='magnemite/scene.gltf') }}" 
         rotation="0 180 0" 
         scale="0.15 0.15 0.15" 
-        gps-entity-place="longitude: -122.163430; latitude: 47.574280;" 
+        id="entity"
         animation-mixer/>
-         </a-entity>
+        </a-entity>
         <a-camera gps-camera rotation-reader></a-camera>
 	</a-scene>
 </body>
+
+<script>
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+
+  function showPosition(position) {
+    var entity = document.getElementById("entity");
+    entity.setAttribute("gps-entity-place", "longitude: " + position.coords.longitude + "; latitude: " + position.coords.latitude);
+  }
+</script>
