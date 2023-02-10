@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/aframe/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-ar.js"></script>
+  </head>
+  <body style="margin : 0px; overflow: hidden;">
+    <a-scene vr-mode-ui="enabled: false">
+      <a-box position="0 0.5 0" material="color: yellow;"></a-box>
+      <a-camera-static></a-camera-static>
+    </a-scene>
+    <button id="start-ar-button">Start AR</button>
+
+    <script>
+      const startARButton = document.getElementById('start-ar-button');
+      startARButton.addEventListener('click', function() {
+        const scene = document.querySelector('a-scene');
+        scene.setAttribute('arjs', 'sourceType: webcam;');
+      });
+    </script>
+  </body>
+</html>
